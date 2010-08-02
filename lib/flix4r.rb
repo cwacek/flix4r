@@ -11,7 +11,7 @@ this_dir = File.dirname(__FILE__)
   require 'ftools'
   require 'nokogiri'
   require 'crack'
-  gem 'mloughran-api_cache'
+  gem 'api_cache'
   require 'api_cache'
   require File.join( this_dir, 'valuable' )
 
