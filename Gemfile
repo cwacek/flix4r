@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'activesupport'
+
 group :test do
   gem 'test-unit'
   gem 'shoulda'

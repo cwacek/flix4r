@@ -66,7 +66,7 @@ Gem::Specification.new do |s|
   s.add_dependency( 'ruby-hmac', '0.4.0' )
   s.add_dependency( 'api_cache', '0.2.0' )
   s.add_dependency( 'crack', '0.1.8' )
-
+  s.add_dependency( 'activesupport' )
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

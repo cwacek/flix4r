@@ -2,7 +2,7 @@
 this_dir = File.dirname(__FILE__)
 
   require 'rubygems'
-  require 'activesupport'
+  require 'active_support'
   require 'open-uri'
   require 'yaml'
   require 'hmac-sha1'
@@ -11,7 +11,6 @@ this_dir = File.dirname(__FILE__)
   require 'ftools'
   require 'nokogiri'
   require 'crack'
-  gem 'mloughran-api_cache'
   require 'api_cache'
   require File.join( this_dir, 'valuable' )
 
