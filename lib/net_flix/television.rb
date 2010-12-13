@@ -1,4 +1,4 @@
-module NetFlix
+module Netflix
   class Television < Title
 
     def actors

@@ -1,7 +1,7 @@
 require 'test_helper'
-class NetFlix::MovieTest < Test::Unit::TestCase
+class Netflix::MovieTest < Test::Unit::TestCase
   def setup
-    @movie = NetFlix::Movie.new(load_fixture_file('movies.xml'))
+    @movie = Netflix::Movie.new(load_fixture_file('movies.xml'))
   end
   context "rating" do
     should "be the rating of the movie" do 
@@ -25,7 +25,7 @@ class NetFlix::MovieTest < Test::Unit::TestCase
         movie_xml = Nokogiri.parse(load_fixture_file('movies.xml'))
         links = movie_xml / "//link"
         links.remove
-        @movie = NetFlix::Movie.new(movie_xml)
+        @movie = Netflix::Movie.new(movie_xml)
         assert_equal [], @movie.directors
       end
     end
@@ -44,9 +44,9 @@ class NetFlix::MovieTest < Test::Unit::TestCase
 
   context "find" do
     should "return an array of movies" do
-      NetFlix::Request.expects(:new).returns(stub(:send => load_fixture_file('titles.xml')))
-      NetFlix::Movie.find( :term => 'pants' ).each do |movie|
-        assert_equal NetFlix::Movie, movie.class
+      Netflix::Request.expects(:new).returns(stub(:send => load_fixture_file('titles.xml')))
+      Netflix::Movie.find( :term => 'pants' ).each do |movie|
+        assert_equal Netflix::Movie, movie.class
       end
     end
   end

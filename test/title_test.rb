@@ -3,7 +3,7 @@ class TitleTest < Test::Unit::TestCase
 
 =begin
   def test_that_title_can_go_to_and_from_json
-    expected = NetFlix::Title.new(load_fixture_file('titles.xml'))
+    expected = Netflix::Title.new(load_fixture_file('titles.xml'))
 
     actual = NetFlix::Title.from_json( expected.to_json )
 
@@ -15,15 +15,15 @@ class TitleTest < Test::Unit::TestCase
   context "autocomplete" do
 
     should "return an array of titles" do
-      NetFlix::Request.expects(:new).returns(stub( :send => load_fixture_file('autocomplete.xml' )))
+      Netflix::Request.expects(:new).returns(stub( :send => load_fixture_file('autocomplete.xml' )))
 
-      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], NetFlix::Title.autocomplete( 'ignored' ) 
+      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], Netflix::Title.autocomplete( 'ignored' )
     end
   end
 
   context "instance methods" do
     setup do
-      @title = NetFlix::Title.parse(load_fixture_file('titles.xml')).first
+      @title = Netflix::Title.parse(load_fixture_file('titles.xml')).first
     end
     context "title" do
       should "be the title of the movie" do
@@ -43,7 +43,7 @@ class TitleTest < Test::Unit::TestCase
 
     context "synopsis" do
       should "default to blank" do
-        assert_equal NetFlix::Title.new('').synopsis, ''
+        assert_equal Netflix::Title.new('').synopsis, ''
       end
       should "make a request for the synopsis" do
         mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/synopsis", 'synopsis.xml')

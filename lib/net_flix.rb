@@ -1,9 +1,9 @@
-module NetFlix
+module Netflix
 
   class << self
 	  
     def credentials
-      @credentials ||= NetFlix::Credentials.from_file 
+      @credentials ||= Netflix::Credentials.from_file
     end
   
     def logfile
@@ -30,7 +30,7 @@ module NetFlix
     end
 
     def log(message)
-      NetFlix.logger.info("[#{Time.now.to_i}] #{message}") if log_requests?  
+      Netflix.logger.info("[#{Time.now.to_i}] #{message}") if log_requests?
     end  
   end # class methods
 end

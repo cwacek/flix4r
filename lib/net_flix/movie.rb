@@ -1,4 +1,4 @@
-module NetFlix
+module Netflix
   class Movie < Title
 
     protected

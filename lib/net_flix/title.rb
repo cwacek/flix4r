@@ -1,4 +1,4 @@
-module NetFlix
+module Netflix
   class Title
     RATING_PREDICATE = %w{ G PG PG-13 R NC-17 NR }.map do |rating| 
         "@term=\"#{rating}\""
@@ -50,7 +50,7 @@ module NetFlix
     end
 
     def movie
-      @movie ||= NetFlix::Movie.new(NetFlix::Request.new(:url => id ).send) if is_movie?
+      @movie ||= Netflix::Movie.new(Netflix::Request.new(:url => id ).send) if is_movie?
     end
 
     def is_movie?
@@ -64,7 +64,7 @@ module NetFlix
     private
     def fetch_link(title)
       link_url = ( @xdoc / "//catalog_title/link[@title='#{title}']/@href" ).to_s
-      NetFlix::Request.new(:url => link_url ).send unless link_url.blank?
+      Netflix::Request.new(:url => link_url ).send unless link_url.blank?
     end
 
     class << self
@@ -74,21 +74,21 @@ module NetFlix
 
       def autocomplete(params)
         (Nokogiri.parse(
-          NetFlix::Request.new(:url => base_url << '/autocomplete', :parameters => params).send
+          Netflix::Request.new(:url => base_url << '/autocomplete', :parameters => params).send
         ) / '//title/@short').to_a.map(&:to_s)
       end
 
       def index(file_name)
-        NetFlix::Request.new( :url => NetFlix::Title.base_url + '/index').write_to_file(file_name)
+        Netflix::Request.new( :url => Netflix::Title.base_url + '/index').write_to_file(file_name)
       end
 
       def search(params)
-        parse(NetFlix::Request.new(:url => base_url, :parameters => params).send)
+        parse(Netflix::Request.new(:url => base_url, :parameters => params).send)
       end
 
       def find( params )
         if params[:id]
-          new( NetFlix::Request.new(:url => params[:id]).send )
+          new( Netflix::Request.new(:url => params[:id]).send )
         elsif params[:term]
           search(params)
         end
@@ -109,5 +109,5 @@ module NetFlix
       end
     end
   end # class Title
-end # module NetFlix
+end # module Netflix
 

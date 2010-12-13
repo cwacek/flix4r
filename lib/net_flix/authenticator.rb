@@ -1,4 +1,4 @@
-module NetFlix
+module Netflix
   class Authenticator < Valuable
 
     has_value :request
