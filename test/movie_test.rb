@@ -25,7 +25,8 @@ class Netflix::MovieTest < Test::Unit::TestCase
         movie_xml = Nokogiri.parse(load_fixture_file('movies.xml'))
         links = movie_xml / "//link"
         links.remove
-        @movie = Netflix::Movie.new(movie_xml)
+
+        @movie = NetFlix::Movie.new(load_fixture_file('movies.xml'))
         assert_equal [], @movie.directors
       end
     end
